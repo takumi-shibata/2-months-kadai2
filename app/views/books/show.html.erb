@@ -27,6 +27,8 @@
 			<h2>Book detail</h2>
 
 			<table class="table">
+				<tbody>
+					<% if @user.id==current_user.id %>
 					<tr>
 						<td>
 							<%= link_to (@book_id.user) do %>
@@ -34,11 +36,19 @@
 							<%= @book_id.user.name %>
 							<% end %>
 						</td>
-						<td><%= link_to @book.title, @book_id %></td>
+						<td><%= @book_id.title %></td>
 						<td><%= @book_id.body %></td>
 						<td><%= link_to "Edit",edit_book_path(@book_id), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 						<td><%= link_to "Destroy",book_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 					</tr>
+					<% else %>
+					<tr>
+						<td class="col-md-3"><%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg" ,class: "img-responsive" %><%= link_to @user.name,user_path(@user.id),class: "user_#{@user.id}" %> </td>
+						<td class="col-md-4"><%= @book_id.title %></td>
+						<td class="col-md-5"><%= @book_id.body %></td>
+					</tr>
+					<% end %>
+				</tbody>
 			</table>
 		</div>
 	</div>

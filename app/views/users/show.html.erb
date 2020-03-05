@@ -31,7 +31,7 @@
 							<%= attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
 							<% end %>
 						</td>
-						<td><%= link_to books.title,book_path, class: "book_#{books.id}" %></td>
+						<td><%= link_to books.title,book_path(books.id), class: "book_#{books.id}" %></td>
 						<td><%= books.body %></td>
 					</tr>
 					<% end %>
